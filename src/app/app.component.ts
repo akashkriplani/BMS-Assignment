@@ -31,7 +31,7 @@ export class AppComponent {
    */
   private isNotDuplicate(list, item): boolean {
     return list.some(i => {
-      return i == item.trim();
+      return i.toString() === item.trim();
     });
   }
 
@@ -86,8 +86,12 @@ export class AppComponent {
       if (splitRange && splitRange.length === 2) {
         if (parseInt(splitRange[0]) < parseInt(splitRange[1])) {
           for(let i = parseInt(splitRange[0]); i <= parseInt(splitRange[1]); i++) {
-            // TODO: Prevent range numbers form duplicating
-            this.addToList.push(i);
+            // TODO: Handle notification messages
+            if (!this.isNotDuplicate(this.addToList, i.toString())) {
+              this.addToList.push(i);
+            } else if (this.isNotDuplicate(this.addToList, i.toString())) {
+              this.duplicateNumbers.push(i);
+            }
           }
         }
       }
