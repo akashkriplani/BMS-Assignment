@@ -67,7 +67,6 @@ export class AppComponent {
       }
     }
     if (this.addToList && this.addToList.length > 0) {
-      console.log(this.addToList);
       this.addToList.sort((a, b) => {
         return a - b;
       });
